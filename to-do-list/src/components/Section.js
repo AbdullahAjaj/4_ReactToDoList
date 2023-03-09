@@ -51,7 +51,7 @@ const Section = () =>{
   const handleDeleteCard = (cardId, cardi) => {
     const unDeletedCards = cardsData.filter((card) => cardId !== card.id); // read , calculation
     setCardsData(unDeletedCards);
-  };
+  }
 
   function handleTitleChange(e){
     return (e.target.value.length > 0) ? setFormLifeCycle("ready") : setFormLifeCycle("empty")
@@ -64,6 +64,14 @@ const Section = () =>{
     setIsAddingItem(false)
   }
 
+  function saveCardChanges(newCard){
+    let newCards = cardsData.map(card=>{
+      if(card.id === newCard.id) return newCard
+      else return card
+    })
+    setCardsData(newCards)
+  }
+
   return(
     <>
       <Nav appliedFilter={appliedFilter}
@@ -71,7 +79,7 @@ const Section = () =>{
         onToDoClick={() => setAppliedFilter("todo")} 
       />
       <section>
-        <Cards cards={filteredData} onDeleteCard={handleDeleteCard} />
+        <Cards cards={filteredData} onDeleteCard={handleDeleteCard} saveCardChanges={saveCardChanges} />
         {isAddingItem && (
           <FormNew
             handleSave={handleSave}

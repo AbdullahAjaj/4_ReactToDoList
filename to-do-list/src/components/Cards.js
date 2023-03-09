@@ -1,38 +1,10 @@
-// import { useState } from "react"
-import EditButton from "./EditButton"
-import DeleteButton from "./DeleteButton"
-// import FormNew from "./FormNew"
+import Card from "./Card";
 
-const Cards = ({cards, onDeleteCard}) =>{
-  function handleDeleteClick(card) {
-    return () => onDeleteCard(card.id, card);
-  }
-
+const Cards = ({cards, onDeleteCard, saveCardChanges}) =>{
   return( 
     <section>
       {cards.map((card) => {
-        return (
-          <div key={card.id} className="item">
-            <div
-              className="color"
-              style={{ backgroundColor: card.color }}
-            ></div>
-            <div className="buttons">
-              <EditButton />
-              <DeleteButton handleClick={handleDeleteClick(card)} />
-            </div>
-            <p className="title">{card.title}</p>
-            <input type="checkbox" className="checkbox" checked={card.done && true} />
-            <div className="others">Others</div>
-            <img
-              src={card.image}
-              className="image"
-              alt="userImage"
-              height={20}
-              width={20}
-            />
-          </div>
-        )
+        return <Card cardData={card} onDeleteCard={onDeleteCard} saveCardChanges={saveCardChanges} />
       })}
     </section>
   )

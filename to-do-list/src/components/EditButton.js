@@ -1,13 +1,10 @@
 import editIcon from "./../images/editIcon.png"
 
-const EditButton = () =>{
-  function handleEditClick(){
-    return console.log("HIIIIIIIIII")
-  }
+const EditButton = ({ handleClick }) =>{
 
   return (
     <img src={editIcon} className="edit" 
-      onClick={handleEditClick} alt="edit"
+      onClick={handleClick} alt="edit"
     />
   )
 }

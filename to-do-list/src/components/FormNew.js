@@ -19,14 +19,11 @@ const FormNew = ({ onDeleteCard, handleSave, formLifeCycle, handleTitleChange })
     setTitleMsg(e.target.value)
   }
 
-console.log("rendered")
-
   return(
     <form className="item" id="item-form" onSubmit={onSave}>
     <input type="color" className="color" name="color" />
     <div className="buttons">
-      <button 
-        disabled={titleMsg.length === 0}>Save</button>
+      <button disabled={titleMsg.length === 0}>Save</button>
       <img
         src={deleteIcon}
         className="delete"
@@ -55,7 +52,6 @@ console.log("rendered")
     />
     <div>{titleMsg}</div>
   </form>
-    
   )
 }
 
