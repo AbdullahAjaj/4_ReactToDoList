@@ -185,7 +185,6 @@ section .item img{
   top: 0;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.7);
-  visibility: hidden;
 }
 .popup-box{
   position: fixed;

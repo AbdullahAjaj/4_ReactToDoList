@@ -1,17 +1,18 @@
 import EditButton from "./EditButton"
 import DeleteButton from "./DeleteButton"
+import DeleteDialog from "./DeleteDialog";
 
 import { useState } from "react" 
+import { cardID } from "../Contexts";
 
-const Card = ({ cardData, onDeleteCard, saveCardChanges }) => {
+
+const Card = ({ cardData, saveCardChanges, handleOpenDialog, onDeleteCard }) => {
   const [editCard, setEditCard] = useState(false)
   const [cardTitle, setCardTitle] = useState(cardData.title)
   const [cardColor, setCardColor] = useState(cardData.color)
   const [cardCheck, setCardCheck] = useState(cardData.done)
-
-  function handleDeleteClick(card) {
-    return () => onDeleteCard(card.id, card);
-  }
+  
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   function changeEditMode(){
     editCard ? setEditCard(false) : setEditCard(true)
@@ -38,6 +39,15 @@ const Card = ({ cardData, onDeleteCard, saveCardChanges }) => {
     setCardCheck(e.target.checked)
   }
 
+
+  function closeDialog() {
+    setShowConfirmation(false);
+  }
+  function openDialog(cardId) {
+    setShowConfirmation(true);
+    return cardId;
+  }
+
   return(
     <>
       {!editCard ? (
@@ -45,7 +55,7 @@ const Card = ({ cardData, onDeleteCard, saveCardChanges }) => {
           <div className="color" style={{ backgroundColor: cardData.color }}></div>
           <div className="buttons">
             <EditButton handleClick={changeEditMode} />
-            <DeleteButton handleClick={handleDeleteClick(cardData)} />
+            <DeleteButton handleClick={openDialog} />
           </div>
           <p className="title">{cardData.title}</p>
           <input type="checkbox" className="checkbox" checked={cardData.done && true} />
@@ -63,7 +73,7 @@ const Card = ({ cardData, onDeleteCard, saveCardChanges }) => {
           <input className="color" type="color" name="color" value={cardColor} onChange={handleChangeColor} />
           <div className="buttons">
             <button onClick={saveChanges}>Save</button>
-            <DeleteButton handleClick={handleDeleteClick(cardData)} />
+            <DeleteButton handleClick={openDialog} />
           </div>
           <input className="title" name="title" value={cardTitle} onChange={handleChangeTitle} />
           <input type="checkbox" name="checkbox" className="checkbox" checked={cardCheck && true} onChange={handleChangeCheck} />
@@ -77,6 +87,9 @@ const Card = ({ cardData, onDeleteCard, saveCardChanges }) => {
           />
         </form>
       )}
+      <cardID.Provider value={cardData.id}>
+        {showConfirmation && <DeleteDialog handleCloseDialog={closeDialog} onDeleteCard={onDeleteCard} />}
+      </cardID.Provider>
     </>
   )
 }
