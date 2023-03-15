@@ -3,6 +3,11 @@ import Footer from "./Footer";
 import Nav from "./Nav";
 import FormNew from "./FormNew";
 
+import Image1 from "./../images/image.jpg";
+import Image2 from "./../images/image2.png";
+import Image3 from "./../images/image3.jpg";
+import Image4 from "./../images/image4.jpg";
+
 import { useState } from "react";
 
 const Section = () => {
@@ -12,28 +17,28 @@ const Section = () => {
       done: true,
       color: "#ff0000",
       title: "To do research",
-      image: "images/image.jpg",
+      image: Image1,
     },
     {
       id: 1676368486003,
       done: false,
       color: "#ffa500",
       title: "Create Prototypes",
-      image: "images/image2.png",
+      image: Image2,
     },
     {
       id: 1676368496905,
       done: true,
       color: "#ffa500",
       title: "Create design consept",
-      image: "images/image3.jpg",
+      image: Image3,
     },
     {
       id: 1676368505544,
       done: true,
       color: "#008000",
       title: "Discuss consept with team",
-      image: "images/image4.jpg",
+      image: Image4,
     },
   ];
 
