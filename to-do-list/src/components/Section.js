@@ -5,8 +5,6 @@ import FormNew from "./FormNew";
 
 import { useState } from "react";
 
-import { stateContext } from "../Contexts";
-
 const Section = () => {
   const staticCards = [
     {
@@ -43,11 +41,6 @@ const Section = () => {
   const [appliedFilter, setAppliedFilter] = useState("none"); //none,done,todo
   const [isAddingItem, setIsAddingItem] = useState(false);
   const [formLifeCycle, setFormLifeCycle] = useState("empty"); //empty
-
-  // let deleteCARD = createContext((cardID) => {
-  //   const unDeletedCards = cardsData.filter((card) => cardID !== card.id);
-  //   setCardsData(unDeletedCards);
-  // });
 
   const filteredData = (() => {
     if (appliedFilter === "none") return cardsData;

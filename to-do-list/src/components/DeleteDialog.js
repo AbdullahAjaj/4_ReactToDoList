@@ -1,12 +1,12 @@
 import closeIcon from "./../images/close.png";
+import { deleteDialogContext } from "../Contexts";
 import { useContext } from "react";
-import { cardID } from "../Contexts";
 
-const DeleteDialog = ({ handleCloseDialog, onDeleteCard }) => {
-  const cardid = useContext(cardID);
+const DeleteDialog = () => {
+  let deleteContextValues = useContext(deleteDialogContext);
 
-  function handleDeleteConfirm() {
-    return onDeleteCard(cardid);
+  function handleDeleteConfirmation() {
+    deleteContextValues.confirmDeleteCard();
   }
 
   return (
@@ -16,15 +16,15 @@ const DeleteDialog = ({ handleCloseDialog, onDeleteCard }) => {
         <img
           src={closeIcon}
           id="close"
-          onClick={handleCloseDialog}
+          onClick={deleteContextValues.closeDialog}
           alt="close"
           height="30"
           width="30"
         />
-        <button className="yes" onClick={handleDeleteConfirm}>
+        <button className="yes" onClick={handleDeleteConfirmation}>
           Yes
         </button>
-        <button className="Cancel" onClick={handleCloseDialog}>
+        <button className="Cancel" onClick={deleteContextValues.closeDialog}>
           Cancel
         </button>
       </div>

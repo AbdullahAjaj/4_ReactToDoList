@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-export let cardID = createContext(null);
+export var showDialog = createContext(false);
 
-export let stateContext = createContext(null);
+export let deleteDialogContext = createContext(null);

@@ -1,11 +1,14 @@
 import Header from "./components/Header";
 import Section from "./components/Section";
+import DeleteDialogProvider from "./DeleteDialogProvider";
 
 const App = () => {
   return (
     <div className="container">
       <Header />
-      <Section />
+      <DeleteDialogProvider>
+        <Section />
+      </DeleteDialogProvider>
     </div>
   );
 };
